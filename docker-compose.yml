@@ -5,9 +5,9 @@ services:
     image: redis:latest
     container_name: node1
     volumes:
-      - ./node1.conf:/etc/redis/redis.conf
-      - ./data/node1:/etc/redis/data
-    command: redis-server /etc/redis/redis.conf
+      - ./node1.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node1:/usr/local/etc/redis/data
+    command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6300:6300
     networks:
@@ -17,9 +17,9 @@ services:
     image: redis:latest
     container_name: node2
     volumes:
-      - ./node2.conf:/etc/redis/redis.conf
-      - ./data/node2:/etc/redis/data
-    command: redis-server /etc/redis/redis.conf
+      - ./node2.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node2:/usr/local/etc/redis/data
+    command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6400:6400
     networks:
@@ -29,9 +29,9 @@ services:
     image: redis:latest
     container_name: node3
     volumes:
-      - ./node3.conf:/etc/redis/redis.conf
-      - ./data/node3:/etc/redis/data
-    command: redis-server /etc/redis/redis.conf
+      - ./node3.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node3:/usr/local/etc/redis/data
+    command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6500:6500
     networks:
