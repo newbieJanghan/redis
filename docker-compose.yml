@@ -36,13 +36,3 @@ services:
     ports:
       - 6500:6500
       - 16500:16500
-
-  redis-cluster:
-    image: redis:latest
-    container_name: redis-cluster
-    platform: linux/unix
-    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6400 127.0.0.1:6500 --cluster-yes --cluster-replicas 1
-    depends_on:
-      - node1
-      - node2
-      - node3
