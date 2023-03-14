@@ -46,6 +46,8 @@ services:
       - node1
       - node2
       - node3
+    networks:
+      - redis-cluster
 
 networks:
   redis-cluster:
