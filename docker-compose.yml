@@ -4,7 +4,6 @@ services:
   node1:
     container_name: node1
     image: redis:latest
-    network_mode: "host"
     volumes:
       - ./node1.conf:/usr/local/etc/redis/redis.conf
       - ./data/node1:/usr/local/etc/redis/data
@@ -12,11 +11,12 @@ services:
     ports:
       - 6300:6300
       - 16300:16300
+    networks:
+      - redis-cluster
 
   node2:
     container_name: node2
     image: redis:latest
-    network_mode: "host"
     volumes:
       - ./node2.conf:/usr/local/etc/redis/redis.conf
       - ./data/node2:/usr/local/etc/redis/data
@@ -24,15 +24,33 @@ services:
     ports:
       - 6400:6400
       - 16400:16400
+    networks:
+      - redis-cluster
 
   node3:
     container_name: node3
     image: redis:latest
-    network_mode: "host"
     volumes:
       - ./node3.conf:/usr/local/etc/redis/redis.conf
       - ./data/node3:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6500:6500
-      - 16500:16500
+    networks:
+      - redis-cluster
+
+  redis-cluster:
+    image: redis:latest
+    container_name: redis-cluster
+    platform: linux/unix
+    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6400 127.0.0.1:6500 --cluster-yes --cluster-replicas1
+    depends_on:
+      - node1
+      - node2
+      - node3
+    networks:
+      - redis-cluster
+
+networks:
+  redis-cluster:
+    driver: bridge
