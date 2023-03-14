@@ -2,53 +2,47 @@ version: "3.7"
 
 services:
   node1:
-    image: redis:latest
     container_name: node1
+    image: redis:latest
+    network_mode: "host"
     volumes:
       - ./node1.conf:/usr/local/etc/redis/redis.conf
       - ./data/node1:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6300:6300
-    networks:
-      - redis-cluster
+      - 16300:16300
 
   node2:
-    image: redis:latest
     container_name: node2
+    image: redis:latest
+    network_mode: "host"
     volumes:
       - ./node2.conf:/usr/local/etc/redis/redis.conf
       - ./data/node2:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6400:6400
-    networks:
-      - redis-cluster
+      - 16400:16400
 
   node3:
-    image: redis:latest
     container_name: node3
+    image: redis:latest
+    network_mode: "host"
     volumes:
       - ./node3.conf:/usr/local/etc/redis/redis.conf
       - ./data/node3:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
       - 6500:6500
-    networks:
-      - redis-cluster
+      - 16500:16500
 
   redis-cluster:
     image: redis:latest
     container_name: redis-cluster
     platform: linux/unix
-    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6400 127.0.0.1:6500 --cluster-yes --cluster-replicas1
+    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6400 127.0.0.1:6500 --cluster-yes --cluster-replicas 1
     depends_on:
       - node1
       - node2
       - node3
-    networks:
-      - redis-cluster
-
-networks:
-  redis-cluster:
-    driver: bridge
