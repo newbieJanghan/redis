@@ -7,9 +7,29 @@ services:
     ports:
       - 6300:6300
     volumes:
-      - ./node1.conf:/usr/local/etc/redis/redis.conf
-      - ./data/node1:/usr/local/etc/redis/data
-    command: redis-server /usr/local/etc/redis/redis.conf
+      - ./node1/master.conf:/etc/redis/redis.conf
+      - ./data/node1:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
+
+  node1-replica1:
+    container_name: node1-replica1
+    image: redis:latest
+    ports:
+      - 6301:6301
+    volumes:
+      - ./node1/replica1.conf:/etc/redis/redis.conf
+      - ./data/node1/replica1:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
+
+  node1-replica2:
+    container_name: node1-replica2
+    image: redis:latest
+    ports:
+      - 6302:6302
+    volumes:
+      - ./node1/replica2.conf:/etc/redis/redis.conf
+      - ./data/node1/replica2:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
 
   node2:
     container_name: node2
@@ -17,9 +37,29 @@ services:
     ports:
       - 6400:6400
     volumes:
-      - ./node2.conf:/usr/local/etc/redis/redis.conf
-      - ./data/node2:/usr/local/etc/redis/data
-    command: redis-server /usr/local/etc/redis/redis.conf
+      - ./node2/master.conf:/etc/redis/redis.conf
+      - ./data/node2:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
+
+  node2-replica1:
+    container_name: node2-replica1
+    image: redis:latest
+    ports:
+      - 6301:6301
+    volumes:
+      - ./node2/replica1.conf:/etc/redis/redis.conf
+      - ./data/node2/replica1:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
+
+  node2-replica2:
+    container_name: node2-replica2
+    image: redis:latest
+    ports:
+      - 6302:6302
+    volumes:
+      - ./node2/replica2.conf:/etc/redis/redis.conf
+      - ./data/node2/replica2:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
 
   node3:
     container_name: node3
@@ -27,16 +67,26 @@ services:
     ports:
       - 6500:6500
     volumes:
-      - ./node3.conf:/usr/local/etc/redis/redis.conf
-      - ./data/node3:/usr/local/etc/redis/data
-    command: redis-server /usr/local/etc/redis/redis.conf
+      - ./node3.conf:/etc/redis/redis.conf
+      - ./data/node3:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
 
-  redis-cli:
+  node3-replica1:
+    container_name: node3-replica1
     image: redis:latest
-    container_name: redis-cli
-    platform: linux/unix
-    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6400 127.0.0.1:6500 --cluster-yes --cluster-replicas 1
-    depends_on:
-      - node1
-      - node2
-      - node3
+    ports:
+      - 6501:6501
+    volumes:
+      - ./node3/replica1.conf:/etc/redis/redis.conf
+      - ./data/node3/replica1:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
+
+  node3-replica2:
+    container_name: node3-replica2
+    image: redis:latest
+    ports:
+      - 6502:6502
+    volumes:
+      - ./node3/replica2.conf:/etc/redis/redis.conf
+      - ./data/node3/replica2:/etc/redis/data
+    command: redis-server /etc/redis/redis.conf
