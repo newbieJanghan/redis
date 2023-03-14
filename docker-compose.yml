@@ -1,5 +1,13 @@
 version: "3.7"
 
+networks:
+  redis-cluster:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.0.0/24
+
 services:
   node1:
     container_name: node1
@@ -49,11 +57,3 @@ services:
       - node1
       - node2
       - node3
-
-networks:
-  redis-cluster:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 10.10.0.0/24
