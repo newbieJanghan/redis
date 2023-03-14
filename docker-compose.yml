@@ -11,7 +11,7 @@ services:
     ports:
       - 6300:6300
     networks:
-      redis-cluster:
+      - redis-cluster
 
   node2:
     image: redis:latest
@@ -23,7 +23,7 @@ services:
     ports:
       - 6400:6400
     networks:
-      redis-cluster:
+      - redis-cluster
 
   node3:
     image: redis:latest
@@ -35,7 +35,7 @@ services:
     ports:
       - 6500:6500
     networks:
-      redis-cluster:
+      - redis-cluster
 
   redis-cluster:
     image: redis:latest
@@ -46,6 +46,7 @@ services:
       - node1
       - node2
       - node3
+
 networks:
   redis_cluster:
     driver: bridge
