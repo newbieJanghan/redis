@@ -7,7 +7,7 @@ services:
     volumes:
       - ./node1.conf:etc/redis/redis.conf
       - ./data/node1:etc/redis/data
-    command: redis-server etc/redis/redis.conf
+    command: redis-server /etc/redis/redis.conf
     ports:
       - 6300:6300
     networks:
@@ -19,7 +19,7 @@ services:
     volumes:
       - ./node2.conf:etc/redis/redis.conf
       - ./data/node2:etc/redis/data
-    command: redis-server etc/redis/redis.conf
+    command: redis-server /etc/redis/redis.conf
     ports:
       - 6400:6400
     networks:
@@ -31,7 +31,7 @@ services:
     volumes:
       - ./node3.conf:etc/redis/redis.conf
       - ./data/node3:etc/redis/data
-    command: redis-server etc/redis/redis.conf
+    command: redis-server /etc/redis/redis.conf
     ports:
       - 6500:6500
     networks:
@@ -48,5 +48,5 @@ services:
       - node3
 
 networks:
-  redis_cluster:
+  redis-cluster:
     driver: bridge
