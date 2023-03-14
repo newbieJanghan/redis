@@ -9,8 +9,6 @@ services:
       - ./node1.conf:/usr/local/etc/redis/redis.conf
       - ./data/node1:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
-    networks:
-      - redis-cluster
 
   node2:
     container_name: node2
@@ -20,8 +18,6 @@ services:
       - ./node2.conf:/usr/local/etc/redis/redis.conf
       - ./data/node2:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
-    networks:
-      - redis-cluster
 
   node3:
     container_name: node3
@@ -31,8 +27,6 @@ services:
       - ./node3.conf:/usr/local/etc/redis/redis.conf
       - ./data/node3:/usr/local/etc/redis/data
     command: redis-server /usr/local/etc/redis/redis.conf
-    networks:
-      - redis-cluster
 
   redis-cluster:
     image: redis:latest
