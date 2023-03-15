@@ -75,7 +75,7 @@ services:
     ports:
       - 6500:6500
     volumes:
-      - ./node3.conf:/etc/redis/redis.conf
+      - ./node3/master.conf:/etc/redis/redis.conf
       - ./data/node3:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
