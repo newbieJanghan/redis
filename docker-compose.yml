@@ -12,6 +12,7 @@ services:
       - "7005:7005"
     volumes:
       - ./cluster.conf:/usr/local/etc/redis.conf
+      - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node1:
@@ -19,8 +20,9 @@ services:
     image: redis:latest
     container_name: redis-node1
     volumes:
-      - ./node1.conf:/usr/local/etc/redis.conf
+      - ./conf/node1.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
+      - ./data:/_data
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node2:
@@ -28,8 +30,9 @@ services:
     image: redis:latest
     container_name: redis-node2
     volumes:
-      - ./node2.conf:/usr/local/etc/redis.conf
+      - ./conf/node2.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
+      - ./data:/_data
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node3:
@@ -37,7 +40,7 @@ services:
     image: redis:latest
     container_name: redis-node3
     volumes:
-      - ./node3.conf:/usr/local/etc/redis.conf
+      - ./conf/node3.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -46,7 +49,7 @@ services:
     image: redis:latest
     container_name: redis-node4
     volumes:
-      - ./node4.conf:/usr/local/etc/redis.conf
+      - ./conf/node4.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -55,7 +58,7 @@ services:
     image: redis:latest
     container_name: redis-node5
     volumes:
-      - ./node5.conf:/usr/local/etc/redis.conf
+      - ./conf/node5.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -64,7 +67,7 @@ services:
     image: redis:latest
     container_name: redis-node6
     volumes:
-      - ./node6.conf:/usr/local/etc/redis.conf
+      - ./conf/node6.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
