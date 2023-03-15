@@ -11,7 +11,7 @@ services:
       - "7004:7004"
       - "7005:7005"
     volumes:
-      - ./cluster.conf:/usr/local/etc/redis.conf
+      - ./configs/cluster.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -20,7 +20,7 @@ services:
     image: redis:latest
     container_name: redis-node1
     volumes:
-      - ./conf/node1.conf:/usr/local/etc/redis.conf
+      - ./configs/node1.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
       - ./data:/_data
     command: redis-server /usr/local/etc/redis.conf
@@ -30,7 +30,7 @@ services:
     image: redis:latest
     container_name: redis-node2
     volumes:
-      - ./conf/node2.conf:/usr/local/etc/redis.conf
+      - ./configs/node2.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
       - ./data:/_data
     command: redis-server /usr/local/etc/redis.conf
@@ -40,7 +40,7 @@ services:
     image: redis:latest
     container_name: redis-node3
     volumes:
-      - ./conf/node3.conf:/usr/local/etc/redis.conf
+      - ./configs/node3.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -49,7 +49,7 @@ services:
     image: redis:latest
     container_name: redis-node4
     volumes:
-      - ./conf/node4.conf:/usr/local/etc/redis.conf
+      - ./configs/node4.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -58,7 +58,7 @@ services:
     image: redis:latest
     container_name: redis-node5
     volumes:
-      - ./conf/node5.conf:/usr/local/etc/redis.conf
+      - ./configs/node5.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -67,7 +67,7 @@ services:
     image: redis:latest
     container_name: redis-node6
     volumes:
-      - ./conf/node6.conf:/usr/local/etc/redis.conf
+      - ./configs/node6.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
