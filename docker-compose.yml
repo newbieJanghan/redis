@@ -10,9 +10,6 @@ services:
       - "7003:7003"
       - "7004:7004"
       - "7005:7005"
-      - "7006:7006"
-      - "7007:7007"
-      - "7008:7008"
     volumes:
       - ./cluster.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
@@ -65,35 +62,11 @@ services:
       - ./node6.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
 
-  redis-node7:
-    network_mode: "service:redis-cluster"
-    image: redis:latest
-    container_name: redis-node7
-    volumes:
-      - ./node7.conf:/usr/local/etc/redis.conf
-    command: redis-server /usr/local/etc/redis.conf
-
-  redis-node8:
-    network_mode: "service:redis-cluster"
-    image: redis:latest
-    container_name: redis-node8
-    volumes:
-      - ./node8.conf:/usr/local/etc/redis.conf
-    command: redis-server /usr/local/etc/redis.conf
-
-  redis-node9:
-    network_mode: "service:redis-cluster"
-    image: redis:latest
-    container_name: redis-node9
-    volumes:
-      - ./node9.conf:/usr/local/etc/redis.conf
-    command: redis-server /usr/local/etc/redis.conf
-
   redis-cluster-entry:
     network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-cluster-entry
-    command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 127.0.0.1:7007 127.0.0.1:7008 --cluster-yes --cluster-replicas 2
+    command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
     depends_on:
       - redis-cluster
       - redis-node1
@@ -102,6 +75,3 @@ services:
       - redis-node4
       - redis-node5
       - redis-node6
-      - redis-node7
-      - redis-node8
-      - redis-node9
