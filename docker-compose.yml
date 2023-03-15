@@ -8,7 +8,7 @@ services:
       - 6300:6300
     volumes:
       - ./node1/master.conf:/etc/redis/redis.conf
-      - ./data/node1:/etc/redis/data
+      - ./data/node1/master:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
   node1-replica1:
@@ -42,7 +42,7 @@ services:
       - 6400:6400
     volumes:
       - ./node2/master.conf:/etc/redis/redis.conf
-      - ./data/node2:/etc/redis/data
+      - ./data/node2/master:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
   node2-replica1:
@@ -76,7 +76,7 @@ services:
       - 6500:6500
     volumes:
       - ./node3/master.conf:/etc/redis/redis.conf
-      - ./data/node3:/etc/redis/data
+      - ./data/node3/master:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
   node3-replica1:
