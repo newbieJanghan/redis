@@ -105,7 +105,7 @@ services:
     network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-cluster-entry
-    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6301 127.0.0.1:6302 127.0.0.1:6400 127.0.0.1:6401 127.0.0.1:6402 127.0.0.1:6500 127.0.0.1:6501 127.0.0.1:6502 --cluster-yes
+    command: redis-cli --cluster create 127.0.0.1:6300 127.0.0.1:6301 127.0.0.1:6302 127.0.0.1:6400 127.0.0.1:6401 127.0.0.1:6402 127.0.0.1:6500 127.0.0.1:6501 127.0.0.1:6502 --cluster-yes --cluster-replicas 2
     depends_on:
       - redis-cluster
       - redis-node1
