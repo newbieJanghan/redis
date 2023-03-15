@@ -33,7 +33,7 @@ services:
       - ./node1/replica1.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
     depends_on:
-      - node1
+      - redis-node1
 
   redis-replica1-2:
     network_mode: "service:redis-cluster"
@@ -43,7 +43,7 @@ services:
       - ./node1/replica2.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
     depends_on:
-      - node1
+      - redis-node1
 
   redis-node2:
     network_mode: "service:redis-cluster"
@@ -61,7 +61,7 @@ services:
       - ./node2/replica1.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
     depends_on:
-      - node2
+      - redis-node2
 
   redis-replica2-2:
     network_mode: "service:redis-cluster"
@@ -71,7 +71,7 @@ services:
       - ./node2/replica2.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
     depends_on:
-      - node2
+      - redis-node2
 
   redis-node3:
     network_mode: "service:redis-cluster"
@@ -89,7 +89,7 @@ services:
       - ./node3/replica1.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
     depends_on:
-      - node3
+      - redis-node3
 
   redis-replica3-2:
     network_mode: "service:redis-cluster"
@@ -99,7 +99,7 @@ services:
       - ./node3/replica2.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
     depends_on:
-      - node3
+      - redis-node3
 
   redis-cluster-entry:
     network_mode: "service:redis-cluster"
