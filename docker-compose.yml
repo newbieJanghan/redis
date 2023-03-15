@@ -7,7 +7,7 @@ services:
     ports:
       - 6300:6300
     volumes:
-      - ./node1/master/redis.conf:/etc/redis/redis.conf
+      - ./node1/master.conf:/etc/redis/redis.conf
       - ./data/node1/master:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
@@ -17,7 +17,7 @@ services:
     ports:
       - 6301:6301
     volumes:
-      - ./node1/replica1/redis.conf:/etc/redis/redis.conf
+      - ./node1/replica1.conf:/etc/redis/redis.conf
       - ./data/node1/replica1:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
     depends_on:
@@ -29,7 +29,7 @@ services:
     ports:
       - 6302:6302
     volumes:
-      - ./node1/replica2/redis.conf:/etc/redis/redis.conf
+      - ./node1/replica2.conf:/etc/redis/redis.conf
       - ./data/node1/replica2:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
     depends_on:
@@ -41,7 +41,7 @@ services:
     ports:
       - 6400:6400
     volumes:
-      - ./node2/master/redis.conf:/etc/redis/redis.conf
+      - ./node2/master.conf:/etc/redis/redis.conf
       - ./data/node2/master:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
@@ -51,7 +51,7 @@ services:
     ports:
       - 6401:6401
     volumes:
-      - ./node2/replica1/redis.conf:/etc/redis/redis.conf
+      - ./node2/replica1.conf:/etc/redis/redis.conf
       - ./data/node2/replica1:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
     depends_on:
@@ -63,7 +63,7 @@ services:
     ports:
       - 6402:6402
     volumes:
-      - ./node2/replica2/redis.conf:/etc/redis/redis.conf
+      - ./node2/replica2.conf:/etc/redis/redis.conf
       - ./data/node2/replica2:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
     depends_on:
@@ -75,7 +75,7 @@ services:
     ports:
       - 6500:6500
     volumes:
-      - ./node3/master/redis.conf:/etc/redis/redis.conf
+      - ./node3/master.conf:/etc/redis/redis.conf
       - ./data/node3/master:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
 
@@ -85,7 +85,7 @@ services:
     ports:
       - 6501:6501
     volumes:
-      - ./node3/replica1/redis.conf:/etc/redis/redis.conf
+      - ./node3/replica1.conf:/etc/redis/redis.conf
       - ./data/node3/replica1:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
     depends_on:
@@ -97,7 +97,7 @@ services:
     ports:
       - 6502:6502
     volumes:
-      - ./node3/replica2/redis.conf:/etc/redis/redis.conf
+      - ./node3/replica2.conf:/etc/redis/redis.conf
       - ./data/node3/replica2:/etc/redis/data
     command: redis-server /etc/redis/redis.conf
     depends_on:
