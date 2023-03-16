@@ -12,8 +12,8 @@ services:
       - "7005:7005"
     volumes:
       - ./configs/cluster.conf:/usr/local/etc/redis.conf
+      - ./logs:/redis/logs
       - ./data:/data
-      # - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node1:
