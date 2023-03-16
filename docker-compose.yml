@@ -11,10 +11,10 @@ services:
       - "7004:7004"
       - "7005:7005"
     volumes:
-      - ./configs/cluster.conf:/usr/local/etc/redis.conf
+      - ./configs/cluster.conf:/usr/local/etc/redis/redis.conf
       - ./logs:/redis/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
 
   redis-node1:
     depends_on:
