@@ -14,7 +14,7 @@ services:
       - ./configs/cluster.conf:/usr/local/etc/redis/redis.conf
       - ./logs:/redis/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis/redis.conf
+    command: redislabs/redismod /usr/local/etc/redis/redis.conf
 
   redis-node1:
     depends_on:
