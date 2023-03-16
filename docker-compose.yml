@@ -1,8 +1,8 @@
 version: "3"
 services:
-  redis-cluster:
+  redis-cluster-net:
     image: redislabs/redismod:latest
-    container_name: redis-cluster
+    container_name: redis-cluster-net
     ports:
       - "7000:7000"
       - "7001:7001"
@@ -11,13 +11,11 @@ services:
       - "7004:7004"
       - "7005:7005"
     volumes:
-      - ./configs/cluster.conf:/usr/local/etc/redis.conf
-      - ./logs:/redis/logs
-      - ./data/cluster:/data
+      - ./configs/cluster-net.conf:/usr/local/etc/redis.conf
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node1:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node1
     volumes:
@@ -25,9 +23,11 @@ services:
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
+    depends_on:
+      - redis-cluster-net
 
   redis-node2:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node2
     volumes:
@@ -35,9 +35,11 @@ services:
       - ./logs:/redis/logs
       - ./data/node2:/data
     command: redis-server /usr/local/etc/redis.conf
+    depends_on:
+      - redis-cluster-net
 
   redis-node3:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node3
     volumes:
@@ -45,9 +47,11 @@ services:
       - ./logs:/redis/logs
       - ./data/node3:/data
     command: redis-server /usr/local/etc/redis.conf
+    depends_on:
+      - redis-cluster-net
 
   redis-node4:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node4
     volumes:
@@ -55,9 +59,11 @@ services:
       - ./logs:/redis/logs
       - ./data/node4:/data
     command: redis-server /usr/local/etc/redis.conf
+    depends_on:
+      - redis-cluster-net
 
   redis-node5:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node5
     volumes:
@@ -65,9 +71,11 @@ services:
       - ./logs:/redis/logs
       - ./data/node5:/data
     command: redis-server /usr/local/etc/redis.conf
+    depends_on:
+      - redis-cluster-net
 
   redis-node6:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node6
     volumes:
@@ -75,9 +83,11 @@ services:
       - ./logs:/redis/logs
       - ./data/node6:/data
     command: redis-server /usr/local/etc/redis.conf
+    depends_on:
+      - redis-cluster-net
 
   redis-cluster-entry:
-    network_mode: "service:redis-cluster"
+    network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-cluster-entry
     command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
