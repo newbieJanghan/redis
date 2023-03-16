@@ -13,7 +13,6 @@ services:
       - "7005:7005"
     volumes:
       - ./configs/cluster.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes-cluster.conf
       - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
@@ -25,7 +24,6 @@ services:
     container_name: redis-node1
     volumes:
       - ./configs/node1.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes1.conf
       - ./logs:/redis/logs
       - ./data/node1:/data
     command: redis-server /usr/local/etc/redis.conf
@@ -38,7 +36,6 @@ services:
     container_name: redis-node2
     volumes:
       - ./configs/node2.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes2.conf
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
@@ -51,7 +48,6 @@ services:
     container_name: redis-node3
     volumes:
       - ./configs/node3.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes3.conf
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
@@ -64,7 +60,6 @@ services:
     container_name: redis-node4
     volumes:
       - ./configs/node4.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes4.conf
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
@@ -77,7 +72,6 @@ services:
     container_name: redis-node5
     volumes:
       - ./configs/node5.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes5.conf
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
@@ -90,7 +84,6 @@ services:
     container_name: redis-node6
     volumes:
       - ./configs/node6.conf:/usr/local/etc/redis.conf
-      - ./configs/cluster-configs:/usr/local/etc/nodes6.conf
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
