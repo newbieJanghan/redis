@@ -1,9 +1,9 @@
 version: "3"
 services:
-  redis-cluster-net:
+  redis-cluster:
     image: redis:latest
     # image: redislabs/redismod:latest
-    container_name: redis-cluster-net
+    container_name: redis-cluster
     ports:
       - "7000:7000"
       - "7001:7001"
@@ -19,8 +19,8 @@ services:
 
   redis-node1:
     depends_on:
-      - redis-cluster-net
-    network_mode: "service:redis-cluster-net"
+      - redis-cluster
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-node1
     volumes:
@@ -31,8 +31,8 @@ services:
 
   redis-node2:
     depends_on:
-      - redis-cluster-net
-    network_mode: "service:redis-cluster-net"
+      - redis-cluster
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-node2
     volumes:
@@ -43,8 +43,8 @@ services:
 
   redis-node3:
     depends_on:
-      - redis-cluster-net
-    network_mode: "service:redis-cluster-net"
+      - redis-cluster
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-node3
     volumes:
@@ -55,8 +55,8 @@ services:
 
   redis-node4:
     depends_on:
-      - redis-cluster-net
-    network_mode: "service:redis-cluster-net"
+      - redis-cluster
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-node4
     volumes:
@@ -67,8 +67,8 @@ services:
 
   redis-node5:
     depends_on:
-      - redis-cluster-net
-    network_mode: "service:redis-cluster-net"
+      - redis-cluster
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-node5
     volumes:
@@ -79,8 +79,8 @@ services:
 
   redis-node6:
     depends_on:
-      - redis-cluster-net
-    network_mode: "service:redis-cluster-net"
+      - redis-cluster
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-node6
     volumes:
@@ -90,12 +90,12 @@ services:
     command: redis-server /usr/local/etc/redis.conf
 
   redis-cluster-entry:
-    network_mode: "service:redis-cluster-net"
+    network_mode: "service:redis-cluster"
     image: redis:latest
     container_name: redis-cluster-entry
     command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
     depends_on:
-      - redis-cluster-net
+      - redis-cluster
       - redis-node1
       - redis-node2
       - redis-node3
