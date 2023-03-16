@@ -13,6 +13,8 @@ services:
       - "7005:7005"
     volumes:
       - ./configs/cluster-net.conf:/usr/local/etc/redis.conf
+      - ./logs:/redis/logs
+      - ./data/cluster:/data
     # entrypoint: >
     #   redis-server
     #     --loadmodule /usr/lib/redis/modules/redisearch.so
