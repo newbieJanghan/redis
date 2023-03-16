@@ -1,7 +1,7 @@
 version: "3"
 services:
   redis-cluster:
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-cluster
     ports:
       - "7000:7000"
@@ -11,18 +11,16 @@ services:
       - "7004:7004"
       - "7005:7005"
     volumes:
-      - ./configs/cluster.conf:/usr/local/etc/redis/redis.conf
+      - ./configs/cluster.conf:/usr/local/etc/redis.conf
       - ./logs:/redis/logs
       - ./data:/data
-    entrypoint: >
-      redis-server /usr/local/etc/redis/redis.conf
-    # command: redislabs/redismod /usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis.conf
 
   redis-node1:
     depends_on:
       - redis-cluster
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-node1
     volumes:
       - ./configs/node1.conf:/usr/local/etc/redis.conf
@@ -34,7 +32,7 @@ services:
     depends_on:
       - redis-cluster
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-node2
     volumes:
       - ./configs/node2.conf:/usr/local/etc/redis.conf
@@ -46,7 +44,7 @@ services:
     depends_on:
       - redis-cluster
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-node3
     volumes:
       - ./configs/node3.conf:/usr/local/etc/redis.conf
@@ -58,7 +56,7 @@ services:
     depends_on:
       - redis-cluster
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-node4
     volumes:
       - ./configs/node4.conf:/usr/local/etc/redis.conf
@@ -70,7 +68,7 @@ services:
     depends_on:
       - redis-cluster
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-node5
     volumes:
       - ./configs/node5.conf:/usr/local/etc/redis.conf
@@ -82,7 +80,7 @@ services:
     depends_on:
       - redis-cluster
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-node6
     volumes:
       - ./configs/node6.conf:/usr/local/etc/redis.conf
@@ -92,7 +90,7 @@ services:
 
   redis-cluster-entry:
     network_mode: "service:redis-cluster"
-    image: redislabs/redismod:latest
+    image: redis:latest
     container_name: redis-cluster-entry
     command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
     depends_on:
