@@ -13,7 +13,7 @@ services:
     volumes:
       - ./configs/cluster.conf:/usr/local/etc/redis.conf
       - ./data:/data
-      - ./logs:/redis/logs
+      # - ./logs:/redis/logs
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node1:
