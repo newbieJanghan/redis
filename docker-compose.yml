@@ -15,6 +15,8 @@ services:
     command: redis-server /usr/local/etc/redis.conf
 
   redis-node1:
+    depends_on:
+      - redis-cluster-net
     network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node1
@@ -23,10 +25,10 @@ services:
       - ./logs:/redis/logs
       - ./data:/data
     command: redis-server /usr/local/etc/redis.conf
-    depends_on:
-      - redis-cluster-net
 
   redis-node2:
+    depends_on:
+      - redis-cluster-net
     network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node2
@@ -35,10 +37,10 @@ services:
       - ./logs:/redis/logs
       - ./data/node2:/data
     command: redis-server /usr/local/etc/redis.conf
-    depends_on:
-      - redis-cluster-net
 
   redis-node3:
+    depends_on:
+      - redis-cluster-net
     network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node3
@@ -47,10 +49,10 @@ services:
       - ./logs:/redis/logs
       - ./data/node3:/data
     command: redis-server /usr/local/etc/redis.conf
-    depends_on:
-      - redis-cluster-net
 
   redis-node4:
+    depends_on:
+      - redis-cluster-net
     network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node4
@@ -59,10 +61,10 @@ services:
       - ./logs:/redis/logs
       - ./data/node4:/data
     command: redis-server /usr/local/etc/redis.conf
-    depends_on:
-      - redis-cluster-net
 
   redis-node5:
+    depends_on:
+      - redis-cluster-net
     network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node5
@@ -71,10 +73,10 @@ services:
       - ./logs:/redis/logs
       - ./data/node5:/data
     command: redis-server /usr/local/etc/redis.conf
-    depends_on:
-      - redis-cluster-net
 
   redis-node6:
+    depends_on:
+      - redis-cluster-net
     network_mode: "service:redis-cluster-net"
     image: redislabs/redismod:latest
     container_name: redis-node6
@@ -83,8 +85,6 @@ services:
       - ./logs:/redis/logs
       - ./data/node6:/data
     command: redis-server /usr/local/etc/redis.conf
-    depends_on:
-      - redis-cluster-net
 
   redis-cluster-entry:
     network_mode: "service:redis-cluster-net"
