@@ -12,7 +12,7 @@ services:
       - "7005:7005"
     volumes:
       - ./configs/cluster.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
@@ -24,7 +24,7 @@ services:
     container_name: redis-node1
     volumes:
       - ./configs/node1.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
@@ -36,7 +36,7 @@ services:
     container_name: redis-node2
     volumes:
       - ./configs/node2.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
@@ -48,7 +48,7 @@ services:
     container_name: redis-node3
     volumes:
       - ./configs/node3.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
@@ -60,7 +60,7 @@ services:
     container_name: redis-node4
     volumes:
       - ./configs/node4.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
@@ -72,7 +72,7 @@ services:
     container_name: redis-node5
     volumes:
       - ./configs/node5.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
@@ -84,7 +84,7 @@ services:
     container_name: redis-node6
     volumes:
       - ./configs/node6.conf:/usr/local/etc/redis-stack.conf
-      - ./logs:/redis/logs
+      - ./logs:/logs
       - ./data:/data
     command: redis-stack /usr/local/etc/redis-stack.conf
 
