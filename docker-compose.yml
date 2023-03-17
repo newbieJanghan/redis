@@ -14,7 +14,7 @@ services:
       - ./configs/cluster.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-node1:
     depends_on:
@@ -26,7 +26,7 @@ services:
       - ./configs/node1.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-node2:
     depends_on:
@@ -38,7 +38,7 @@ services:
       - ./configs/node2.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-node3:
     depends_on:
@@ -50,7 +50,7 @@ services:
       - ./configs/node3.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-node4:
     depends_on:
@@ -62,7 +62,7 @@ services:
       - ./configs/node4.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-node5:
     depends_on:
@@ -74,7 +74,7 @@ services:
       - ./configs/node5.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-node6:
     depends_on:
@@ -86,7 +86,7 @@ services:
       - ./configs/node6.conf:/usr/local/etc/redis-stack.conf
       - ./logs:/logs
       - ./data:/data
-    command: redis-stack /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/redis-stack.conf
 
   redis-cluster-entry:
     network_mode: "service:redis-cluster"
