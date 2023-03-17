@@ -1,31 +1,16 @@
 version: "3"
-services:
-  redis-cluster:
-    image: redis/redis-stack:latest
-    container_name: redis-cluster
-    ports:
-      - "7000:7000"
-      - "7001:7001"
-      - "7002:7002"
-      - "7003:7003"
-      - "7004:7004"
-      - "7005:7005"
-    environment:
-      REDIS_PASSWORD: educere
-    volumes:
-      - ./configs:/usr/local/etc/configs
-      - ./logs:/logs
-      - ./data:/data
-    command: redis-server /usr/local/etc/configs/cluster.conf
 
+networks:
+  redis_cluster_net:
+    driver: bridge
+services:
   redis-node1:
-    depends_on:
-      - redis-cluster
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node1
-    environment:
-      REDIS_PASSWORD: educere
+    ports:
+      - 7001:7001
+    networks:
+      - redis_cluster_net
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -33,13 +18,12 @@ services:
     command: redis-server /usr/local/etc/configs/node1.conf
 
   redis-node2:
-    depends_on:
-      - redis-cluster
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node2
-    environment:
-      REDIS_PASSWORD: educere
+    ports:
+      - 7002:7002
+    networks:
+      - redis_cluster_net
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -47,13 +31,12 @@ services:
     command: redis-server /usr/local/etc/configs/node2.conf
 
   redis-node3:
-    depends_on:
-      - redis-cluster
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node3
-    environment:
-      REDIS_PASSWORD: educere
+    ports:
+      - 7003:7003
+    networks:
+      redis_cluster_net:
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -61,13 +44,12 @@ services:
     command: redis-server /usr/local/etc/configs/node3.conf
 
   redis-node4:
-    depends_on:
-      - redis-cluster
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node4
-    environment:
-      REDIS_PASSWORD: educere
+    ports:
+      - 7004:7004
+    networks:
+      redis_cluster_net:
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -75,13 +57,12 @@ services:
     command: redis-server /usr/local/etc/configs/node4.conf
 
   redis-node5:
-    depends_on:
-      - redis-cluster
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node5
-    environment:
-      REDIS_PASSWORD: educere
+    ports:
+      - 7005:7005
+    networks:
+      redis_cluster_net:
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -89,13 +70,12 @@ services:
     command: redis-server /usr/local/etc/configs/node5.conf
 
   redis-node6:
-    depends_on:
-      - redis-cluster
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node6
-    environment:
-      REDIS_PASSWORD: educere
+    ports:
+      - 7006:7006
+    networks:
+      redis_cluster_net:
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -103,14 +83,14 @@ services:
     command: redis-server /usr/local/etc/configs/node6.conf
 
   redis-cluster-entry:
-    network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-cluster-entry
+    networks:
+      redis_cluster_net:
     environment:
       REDISCLI_AUTH: "${REDIS_AUTH}"
-    command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
-    depends_on:
-      - redis-cluster
+    command:
+      redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
       - redis-node1
       - redis-node2
       - redis-node3
