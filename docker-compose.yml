@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 networks:
   redis_cluster_net:
@@ -36,7 +36,7 @@ services:
     ports:
       - 7003:7003
     networks:
-      redis_cluster_net:
+      - redis_cluster_net
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -49,7 +49,7 @@ services:
     ports:
       - 7004:7004
     networks:
-      redis_cluster_net:
+      - redis_cluster_net
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -62,7 +62,7 @@ services:
     ports:
       - 7005:7005
     networks:
-      redis_cluster_net:
+      - redis_cluster_net
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -75,7 +75,7 @@ services:
     ports:
       - 7006:7006
     networks:
-      redis_cluster_net:
+      - redis_cluster_net
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -86,10 +86,8 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-cluster-entry
     networks:
-      redis_cluster_net:
-    environment:
-      REDISCLI_AUTH: "${REDIS_AUTH}"
-    command: redis-cli --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 --cluster-yes --cluster-replicas 1
+      - redis_cluster_net
+    command: redis-cli --requirepass ${REDIS_AUTH} --cluster create 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 --cluster-yes --cluster-replicas 1
     depends_on:
       - redis-node1
       - redis-node2
