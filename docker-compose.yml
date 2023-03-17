@@ -10,6 +10,8 @@ services:
       - "7003:7003"
       - "7004:7004"
       - "7005:7005"
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -22,6 +24,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node1
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -34,6 +38,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node2
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -46,6 +52,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node3
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -58,6 +66,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node4
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -70,6 +80,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node5
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -82,6 +94,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-node6
+    environment:
+      REDIS_PASSWORD: educere
     volumes:
       - ./configs:/usr/local/etc/configs
       - ./logs:/logs
@@ -92,6 +106,8 @@ services:
     network_mode: "service:redis-cluster"
     image: redis/redis-stack:latest
     container_name: redis-cluster-entry
+    environment:
+      REDIS_PASSWORD: educere
     command: redis-cli --cluster create 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 --cluster-yes --cluster-replicas 1
     depends_on:
       - redis-cluster
