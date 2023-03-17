@@ -9,6 +9,7 @@ services:
     container_name: redis-node1
     ports:
       - 7001:7001
+      - 17001:17001
     networks:
       - redis_cluster_net
     volumes:
@@ -22,6 +23,7 @@ services:
     container_name: redis-node2
     ports:
       - 7002:7002
+      - 17002:17002
     networks:
       - redis_cluster_net
     volumes:
@@ -35,6 +37,7 @@ services:
     container_name: redis-node3
     ports:
       - 7003:7003
+      - 17003:17003
     networks:
       - redis_cluster_net
     volumes:
@@ -48,6 +51,7 @@ services:
     container_name: redis-node4
     ports:
       - 7004:7004
+      - 17004:17004
     networks:
       - redis_cluster_net
     volumes:
@@ -61,6 +65,7 @@ services:
     container_name: redis-node5
     ports:
       - 7005:7005
+      - 17005:17005
     networks:
       - redis_cluster_net
     volumes:
@@ -74,6 +79,7 @@ services:
     container_name: redis-node6
     ports:
       - 7006:7006
+      - 17006:17006
     networks:
       - redis_cluster_net
     volumes:
