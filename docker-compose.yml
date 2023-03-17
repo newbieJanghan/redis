@@ -11,10 +11,10 @@ services:
       - "7004:7004"
       - "7005:7005"
     volumes:
-      - ./configs/cluster.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/cluster.conf
 
   redis-node1:
     depends_on:
@@ -23,10 +23,10 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-node1
     volumes:
-      - ./configs/node1.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/node1.conf
 
   redis-node2:
     depends_on:
@@ -35,10 +35,10 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-node2
     volumes:
-      - ./configs/node2.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/node2.conf
 
   redis-node3:
     depends_on:
@@ -47,10 +47,10 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-node3
     volumes:
-      - ./configs/node3.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/node3.conf
 
   redis-node4:
     depends_on:
@@ -59,10 +59,10 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-node4
     volumes:
-      - ./configs/node4.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/node4.conf
 
   redis-node5:
     depends_on:
@@ -71,10 +71,10 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-node5
     volumes:
-      - ./configs/node5.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/node5.conf
 
   redis-node6:
     depends_on:
@@ -83,10 +83,10 @@ services:
     image: redis/redis-stack:latest
     container_name: redis-node6
     volumes:
-      - ./configs/node6.conf:/usr/local/etc/redis-stack.conf
+      - ./configs:/usr/local/etc/configs
       - ./logs:/logs
       - ./data:/data
-    command: redis-server /usr/local/etc/redis-stack.conf
+    command: redis-server /usr/local/etc/configs/node6.conf
 
   redis-cluster-entry:
     network_mode: "service:redis-cluster"
