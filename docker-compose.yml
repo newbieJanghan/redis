@@ -5,7 +5,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.18.0.0/24
+        - subnet: 173.18.0.0/24
 services:
   redis-info:
     image: redis/redis-stack:latest
@@ -20,7 +20,7 @@ services:
       - 7011:6973
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.11
+        ipv4_address: 173.18.0.11
     volumes:
       - ./configs:/configs
       - ./logs:/logs
@@ -34,7 +34,7 @@ services:
       - 7012:6973
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.12
+        ipv4_address: 173.18.0.12
     volumes:
       - ./configs:/configs
       - ./logs:/logs
@@ -48,7 +48,7 @@ services:
       - 7013:6973
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.13
+        ipv4_address: 173.18.0.13
     volumes:
       - ./configs:/configs
       - ./logs:/logs
@@ -62,7 +62,7 @@ services:
       - 7014:6973
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.14
+        ipv4_address: 173.18.0.14
     volumes:
       - ./configs:/configs
       - ./logs:/logs
@@ -76,7 +76,7 @@ services:
       - 7015:6973
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.15
+        ipv4_address: 173.18.0.15
     volumes:
       - ./configs:/configs
       - ./logs:/logs
@@ -90,7 +90,7 @@ services:
       - 7016:6973
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.16
+        ipv4_address: 173.18.0.16
     volumes:
       - ./configs:/configs
       - ./logs:/logs
@@ -102,8 +102,8 @@ services:
     container_name: redis-cluster-entry
     networks:
       redis_cluster_net:
-        ipv4_address: 172.18.0.10
-    command: redis-cli -a ${REDIS_AUTH} --cluster create 172.18.0.11:6973 172.18.0.12:6973 172.18.0.13:6973 172.18.0.14:6973 172.18.0.15:6973 172.18.0.16:6973 --cluster-yes --cluster-replicas 1
+        ipv4_address: 173.18.0.10
+    command: redis-cli -a ${REDIS_AUTH} --cluster create 173.18.0.11:6973 173.18.0.12:6973 173.18.0.13:6973 173.18.0.14:6973 173.18.0.15:6973 173.18.0.16:6973 --cluster-yes --cluster-replicas 1
     depends_on:
       - redis-node1
       - redis-node2
