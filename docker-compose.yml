@@ -12,6 +12,9 @@ services:
     container_name: redis-info
     ports:
       - 8001:8001
+    volumes:
+      - ./configs:/configs
+      - ./data/redisinsight:/data
     command: redis-server /configs/redisinsight.conf
   redis-node1:
     image: redis/redis-stack:latest
